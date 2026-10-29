@@ -1,0 +1,426 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Photo from '../components/Photo.astro';
+import WorksIndex from '../components/WorksIndex.astro';
+import Contact from '../components/Contact.astro';
+import { team, press } from '../data/site';
+
+const h2Sm = 'm-0 text-[clamp(30px,3.4vw,54px)] leading-[1.05] font-light tracking-[-0.03em]';
+const eyebrow = 'm-0 text-[13px] font-medium tracking-[0.16em] uppercase text-accent';
+const hi = 'text-accent font-medium';
+---
+
+<Layout
+  title="UMBRAL Arquitectura — Arquitectura residencial · Buenos Aires"
+  description="Estudio de arquitectura residencial contemporánea en Buenos Aires. Diseñamos residencias privadas desde el lugar, sus materiales y las personas que lo habitan."
+>
+  <Header />
+
+  <main>
+    <!-- Hero -->
+    <section
+      id="inicio"
+      aria-labelledby="hero-title"
+      class="relative flex h-svh max-h-[1100px] min-h-[620px] flex-col justify-end text-cream"
+    >
+      <div class="absolute inset-0 overflow-hidden bg-[#8a7a66]">
+        <Photo
+          id="photo-1756706718604-ef4af3970e33"
+          width={2400}
+          alt="Residencia de hormigón y madera entre árboles"
+          class="hero-img"
+          eager
+        />
+      </div>
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,12,0.38)_0%,rgba(20,16,12,0)_22%,rgba(20,16,12,0)_48%,rgba(20,16,12,0.62)_100%)]"
+      >
+      </div>
+      <div class="grid-12 relative items-end gap-y-7 px-(--edge) pb-[clamp(28px,4vw,56px)]">
+        <h1
+          id="hero-title"
+          class="hero-in tight-left col-span-full m-0 text-[clamp(46px,8.4vw,148px)] leading-[0.92] font-light tracking-[-0.045em] text-balance md:col-[1/span_12] xl:col-[1/span_9]"
+          style="font-stretch:112%; --i:0"
+        >
+          Arquitectura pensada para una forma de vivir.
+        </h1>
+        <div
+          class="hero-in col-span-full flex flex-col items-start gap-5 pb-[0.6em] md:col-[1/span_6] xl:col-[10/span_3]"
+          style="--i:2"
+        >
+          <p class="m-0 max-w-[34ch] text-base leading-[1.55]">
+            Diseñamos residencias privadas desde una comprensión profunda del lugar, sus materiales y las
+            personas que lo habitan.
+          </p>
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <a href="#proyectos" class="btn justify-between">
+              Explorar proyectos <span class="arrow" aria-hidden="true">→</span>
+            </a>
+            <a
+              href="#estudio"
+              class="link-u flex min-h-11 items-center font-medium hover:text-bone-soft"
+            >
+              Conocer el estudio
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section
+      aria-label="Presentación"
+      class="grid-12 items-start gap-y-10 px-(--edge) pt-[clamp(96px,12vw,200px)] pb-[clamp(80px,10vw,160px)]"
+    >
+      <p
+        data-reveal
+        class="col-span-full m-0 text-[clamp(26px,3.1vw,50px)] leading-[1.16] font-light tracking-[-0.025em] md:col-[4/span_9] md:indent-[3em] xl:col-[5/span_8]"
+        style="font-stretch:106%"
+      >
+        <span class="font-medium text-accent">UMBRAL</span> es un estudio pequeño de Buenos Aires. Proyectamos pocas
+        casas por año, en la ciudad, la sierra, la costa y la montaña, y cada una empieza por caminar el terreno
+        antes de dibujar una sola línea.
+      </p>
+      <figure
+        data-reveal
+        class="relative col-[1/span_8] m-0 aspect-[3/4] overflow-hidden bg-stone md:col-[1/span_3] md:row-start-1 md:mt-[clamp(120px,14vw,260px)]"
+      >
+        <Photo
+          id="photo-1704920110270-5c107519cdc4"
+          width={1000}
+          alt="Interior de muros claros con un banco bajo"
+        />
+      </figure>
+    </section>
+
+    <!-- Proyectos -->
+    <section id="proyectos" aria-labelledby="proyectos-title" class="scroll-mt-[72px]">
+      <h2 id="proyectos-title" class="sr-only">Proyectos seleccionados</h2>
+
+      <article aria-labelledby="pr1">
+        <figure
+          data-reveal
+          class="zoom-fig relative m-0 aspect-[4/5] overflow-hidden bg-taupe md:aspect-[16/10] xl:aspect-[21/10]"
+        >
+          <Photo
+            id="photo-1752756571877-d3b3b980edfa"
+            width={2400}
+            alt="Casa del Patio: un árbol crece dentro del patio de hormigón"
+          />
+        </figure>
+        <div class="grid-12 items-start gap-y-5 px-(--edge)">
+          <h3
+            id="pr1"
+            data-reveal
+            class="tight-left relative col-span-full m-0 mt-[-0.48em] text-paper mix-blend-difference text-[clamp(48px,9vw,160px)] leading-[0.9] font-light tracking-[-0.05em] md:col-[1/span_12] md:mt-[-0.52em] xl:col-[1/span_8]"
+            style="font-stretch:112%"
+          >
+            Casa del Patio
+          </h3>
+          <div
+            data-reveal
+            style="--reveal-delay:80ms"
+            class="col-span-full flex flex-col gap-3 md:col-[1/span_6] xl:col-[9/span_4] xl:pt-8"
+          >
+            <p class="m-0 text-[13px] tracking-[0.04em] text-muted">Belgrano, Buenos Aires — 2023</p>
+            <p class="m-0 text-base leading-[1.6]">
+              En un lote angosto, la casa se organiza alrededor de un vacío. El patio reúne luz, ventilación y un
+              tilo existente; la calle queda del otro lado de un muro.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <div
+        class="grid-12 items-start gap-y-16 px-(--edge) pt-[clamp(96px,12vw,200px)]"
+      >
+        <article aria-labelledby="pr2" class="col-span-full flex flex-col gap-5 md:col-[1/span_7]">
+          <figure data-reveal class="zoom-fig relative m-0 aspect-[4/5] overflow-hidden bg-taupe">
+            <Photo
+              id="photo-1595418954089-3341605673d6"
+              width={1600}
+              alt="Casa de la Ladera: volumen de hormigón bajo un cielo gris"
+            />
+          </figure>
+          <div data-reveal class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+            <h3
+              id="pr2"
+              class="m-0 text-[clamp(24px,2.2vw,34px)] font-normal tracking-[-0.02em]"
+              style="font-stretch:108%"
+            >
+              Casa de la Ladera
+            </h3>
+            <p class="m-0 text-[13px] text-muted">Valle de Punilla, Córdoba — 2024</p>
+          </div>
+          <p data-reveal class="m-0 max-w-[46ch] text-base leading-[1.6]">
+            Dos volúmenes escalonados siguen la curva de nivel en lugar de nivelar el terreno. La piedra de los
+            muros salió de la propia excavación.
+          </p>
+        </article>
+
+        <article
+          aria-labelledby="pr3"
+          class="col-span-full flex flex-col gap-5 md:col-[8/span_5] md:mt-[clamp(160px,20vw,360px)] xl:col-[9/span_4]"
+        >
+          <p
+            data-reveal
+            class="m-0 mb-2 max-w-[22ch] text-[clamp(20px,1.7vw,26px)] leading-[1.3] font-light text-accent italic"
+          >
+            “Cerrada en invierno, abierta en verano.”
+          </p>
+          <figure data-reveal class="zoom-fig relative m-0 aspect-square overflow-hidden bg-taupe">
+            <Photo
+              id="photo-1781795290283-893dd050eeb3"
+              width={1400}
+              alt="Casa Umbral: casa blanca con grandes ventanales frente al mar"
+            />
+          </figure>
+          <div data-reveal class="flex flex-col gap-1">
+            <h3
+              id="pr3"
+              class="m-0 text-[clamp(24px,2.2vw,34px)] font-normal tracking-[-0.02em]"
+              style="font-stretch:108%"
+            >
+              Casa Umbral
+            </h3>
+            <p class="m-0 text-[13px] text-muted">Mar Azul, costa atlántica — 2025</p>
+          </div>
+          <p data-reveal class="m-0 text-base leading-[1.6]">
+            Una galería de madera hace de espacio intermedio entre la casa y el bosque de pinos: el umbral que da
+            nombre al estudio.
+          </p>
+        </article>
+      </div>
+
+      <article
+        aria-labelledby="pr4"
+        class="grid grid-cols-1 items-end gap-x-(--gap) gap-y-6 py-[clamp(96px,12vw,200px)] pl-(--edge) md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] xl:grid-cols-[minmax(0,1fr)_minmax(0,2.4fr)]"
+      >
+        <div data-reveal class="flex flex-col items-start gap-6 pr-(--edge) md:flex-row md:items-end md:pr-0">
+          <h3
+            id="pr4"
+            class="m-0 text-[clamp(40px,5.4vw,92px)] leading-[0.95] font-light tracking-[-0.04em] whitespace-nowrap md:rotate-180 md:[writing-mode:vertical-rl]"
+            style="font-stretch:112%"
+          >
+            Pabellón del Lago
+          </h3>
+          <div class="flex max-w-[30ch] flex-col gap-3">
+            <p class="m-0 text-[13px] text-muted">Villa La Angostura, Neuquén — en obra</p>
+            <p class="m-0 text-base leading-[1.6]">
+              Un basamento de piedra sostiene un pabellón liviano de madera. Una sola ventana horizontal enmarca el
+              lago.
+            </p>
+          </div>
+        </div>
+        <figure
+          data-reveal
+          style="--reveal-delay:100ms"
+          class="zoom-fig relative m-0 aspect-[4/3] overflow-hidden bg-taupe md:aspect-[16/10]"
+        >
+          <Photo
+            id="photo-1516099624722-bbd32783b402"
+            width={2000}
+            alt="Pabellón del Lago: volumen de madera sobre el prado"
+          />
+        </figure>
+      </article>
+    </section>
+
+    <WorksIndex />
+
+    <!-- Enfoque -->
+    <section
+      id="enfoque"
+      aria-labelledby="enfoque-title"
+      class="grid-12 scroll-mt-[72px] items-start gap-y-[clamp(48px,6vw,96px)] bg-charcoal px-(--edge) py-[clamp(96px,12vw,200px)] text-cream"
+    >
+      <h2
+        id="enfoque-title"
+        data-reveal
+        class="tight-left col-span-full m-0 text-[clamp(52px,10vw,184px)] leading-[0.88] font-light tracking-[-0.055em]"
+        style="font-stretch:115%"
+      >
+        La luz es un<br />material más.
+      </h2>
+      <p data-reveal class="col-span-full m-0 text-[17px] leading-[1.6] text-paper md:col-[1/span_5] xl:col-[1/span_3]">
+        <strong class="font-semibold">Partimos del lugar.</strong> Recorremos el terreno a distintas horas. Orientación,
+        pendiente, árboles y vistas definen la implantación antes que cualquier forma.
+      </p>
+      <figure
+        data-reveal
+        class="relative col-[1/span_9] m-0 aspect-[3/4] overflow-hidden bg-[#5a514a] md:col-[7/span_6] md:row-[2/span_2] xl:col-[6/span_3]"
+      >
+        <Photo
+          id="photo-1741524915506-c009e15f55cc"
+          width={1200}
+          alt="Escalera bañada por la luz de una ventana"
+        />
+      </figure>
+      <p
+        data-reveal
+        class="col-span-full m-0 text-[17px] leading-[1.6] text-paper md:col-[1/span_5] xl:col-[10/span_3] xl:mt-[clamp(120px,14vw,240px)]"
+      >
+        <strong class="font-semibold">Pocos materiales, usados con honestidad.</strong> Piedra de la zona, hormigón
+        visto, madera maciza, cal. Materiales que envejecen bien y se perciben con el tacto.
+      </p>
+      <p
+        data-reveal
+        class="col-span-full m-0 text-[clamp(22px,2vw,30px)] leading-[1.3] font-light tracking-[-0.01em] md:col-[1/span_6] xl:col-[1/span_4] xl:-mt-[2em]"
+      >
+        Una casa traduce una forma de vivir. Escuchamos rutinas, costumbres y silencios para que cada espacio tenga
+        un motivo y ninguno sobre.
+      </p>
+    </section>
+
+    <!-- Proceso -->
+    <section
+      id="proceso"
+      aria-labelledby="proceso-title"
+      class="grid-12 scroll-mt-[72px] items-start gap-y-10 px-(--edge) py-[clamp(96px,12vw,200px)]"
+    >
+      <div class="col-span-full flex flex-col gap-8 md:sticky md:top-28 md:col-[1/span_4] xl:col-[1/span_3]">
+        <h2 id="proceso-title" class={eyebrow}>Cómo trabajamos</h2>
+        <figure data-reveal class="relative m-0 aspect-[4/5] overflow-hidden bg-stone">
+          <Photo
+            id="photo-1609081144289-eacc3108cd03"
+            width={1200}
+            alt="Interior luminoso con sofá blanco y silla de madera"
+          />
+        </figure>
+      </div>
+      <div class="col-span-full flex flex-col gap-10 md:col-[6/span_7] xl:col-[5/span_8]">
+        <p
+          data-reveal
+          class="m-0 text-[clamp(24px,2.6vw,42px)] leading-[1.28] font-light tracking-[-0.02em]"
+          style="font-stretch:104%"
+        >
+          Primero <span class={hi}>escuchamos</span>: cómo vivís, qué necesitás, qué imaginás. Después
+          <span class={hi}>leemos el lugar</span> — su sol, su pendiente, su normativa — hasta que el terreno empieza
+          a sugerir la casa. Con planos, maquetas y muestras de material
+          <span class={hi}>desarrollamos la propuesta</span> junto a vos. Luego
+          <span class={hi}>definimos cada detalle</span> con ingenieros y especialistas, y finalmente
+          <span class={hi}>acompañamos la obra</span> para que la intención llegue intacta.
+        </p>
+        <p data-reveal class="m-0 max-w-[48ch] text-base leading-[1.6] text-ink-soft">
+          Un mismo arquitecto te acompaña de la primera visita a la entrega de llaves. Cada etapa cierra con una
+          decisión compartida, así siempre sabés en qué punto está tu casa.
+        </p>
+      </div>
+    </section>
+
+    <!-- Testimonio -->
+    <section
+      aria-label="Testimonio"
+      class="grid-12 gap-y-10 bg-charcoal px-(--edge) py-[clamp(96px,12vw,200px)] text-paper"
+    >
+      <blockquote
+        data-reveal
+        class="col-span-full m-0 indent-[-0.42em] text-[clamp(28px,3.6vw,60px)] leading-[1.12] font-light tracking-[-0.03em] md:col-[2/span_11] xl:col-[3/span_8]"
+        style="font-stretch:106%"
+      >
+        “Nos pidieron que les contáramos cómo era un domingo en casa. Dos años después, la casa es exactamente eso.”
+      </blockquote>
+      <p
+        data-reveal
+        style="--reveal-delay:120ms"
+        class="col-span-full m-0 text-[15px] leading-normal text-bone-soft md:col-[2/span_6] xl:col-[9/span_3]"
+      >
+        Familia Ferrari<br />Casa del Patio, Belgrano
+      </p>
+    </section>
+
+    <!-- Estudio -->
+    <section id="estudio" aria-labelledby="estudio-title" class="grid scroll-mt-[72px] grid-cols-1 items-stretch bg-sand md:grid-cols-2">
+      <figure class="relative m-0 min-h-[70svh] overflow-hidden bg-taupe md:min-h-[760px]">
+        <Photo
+          id="photo-1774270906132-86218bf92158"
+          width={1600}
+          alt="Escalera de hormigón rodeada de vegetación"
+        />
+      </figure>
+      <div class="flex flex-col justify-between gap-14 px-(--edge) py-[clamp(64px,8vw,140px)]">
+        <div class="flex flex-col gap-7">
+          <p class={eyebrow}>Estudio</p>
+          <h2 id="estudio-title" data-reveal class={`${h2Sm} max-w-[16ch] !leading-[1.08]`} style="font-stretch:108%">
+            Pequeños por decisión.
+          </h2>
+          <p data-reveal style="--reveal-delay:80ms" class="m-0 max-w-[46ch] text-[17px] leading-[1.6]">
+            Trabajamos en pocos proyectos a la vez para estar presentes en cada uno, desde la primera visita al
+            terreno hasta la última junta. Nos acompaña un grupo estable de ingenieros, constructores y artesanos
+            que comparten nuestra manera de hacer.
+          </p>
+        </div>
+        <p data-reveal class="m-0 text-[15px] leading-[1.6] text-ink-soft">
+          Palermo, Buenos Aires · Proyectos en Argentina y Uruguay
+        </p>
+      </div>
+    </section>
+
+    <!-- Equipo -->
+    <section
+      id="equipo"
+      aria-labelledby="equipo-title"
+      class="grid-12 scroll-mt-[72px] items-start gap-y-14 px-(--edge) py-[clamp(96px,12vw,200px)]"
+    >
+      <h2 id="equipo-title" data-reveal class={`${h2Sm} col-span-full md:col-[1/span_3]`} style="font-stretch:108%">
+        Quiénes<br />proyectan
+      </h2>
+      <div
+        class="col-span-full grid gap-x-(--gap) gap-y-12 [grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))] md:col-[5/span_8]"
+      >
+        {
+          team.map((t, i) => (
+            <div data-reveal style={`--reveal-delay:${i * 80}ms`} class="flex flex-col gap-2.5">
+              <h3 class="m-0 text-[22px] leading-[1.2] font-medium tracking-[-0.01em]">{t.name}</h3>
+              <p class="m-0 text-[13px] tracking-[0.04em] text-accent">{t.role}</p>
+              <p class="m-0 mt-1.5 text-[15px] leading-[1.6] text-ink-soft">{t.bio}</p>
+            </div>
+          ))
+        }
+        <div data-reveal style={`--reveal-delay:${team.length * 80}ms`} class="flex flex-col justify-end gap-2.5">
+          <p class="m-0 text-[15px] leading-[1.6] text-ink-soft">
+            Somos nueve personas entre arquitectos, interioristas y un responsable de obra.
+          </p>
+          <a href="mailto:equipo@umbral.com.ar" class="link-u flex min-h-11 items-center self-start font-medium hover:text-accent">
+            Trabajá con nosotros →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prensa -->
+    <section
+      id="prensa"
+      aria-labelledby="prensa-title"
+      class="grid-12 scroll-mt-[72px] items-start gap-y-10 bg-sand px-(--edge) py-[clamp(80px,10vw,160px)]"
+    >
+      <div class="col-span-full flex flex-col items-start gap-5 md:col-[1/span_3]">
+        <h2 id="prensa-title" class={eyebrow}>Prensa y reconocimientos</h2>
+        <a href="#prensa" class="link-u flex min-h-11 items-center text-[15px] font-medium hover:text-accent">
+          Descargar kit de prensa (PDF)
+        </a>
+      </div>
+      <ul
+        class="col-span-full m-0 grid list-none gap-x-(--gap) gap-y-9 p-0 [grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))] md:col-[5/span_8]"
+      >
+        {
+          press.map((n, i) => (
+            <li data-reveal style={`--reveal-delay:${i * 70}ms`} class="flex flex-col gap-1.5">
+              <span class="text-[13px] text-muted tabular-nums">
+                {n.year} · {n.outlet}
+              </span>
+              <span class="text-[clamp(19px,1.6vw,24px)] leading-[1.3] tracking-[-0.01em]">{n.title}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <Contact />
+  </main>
+
+  <Footer />
+</Layout>

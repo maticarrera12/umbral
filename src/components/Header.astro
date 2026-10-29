@@ -1,0 +1,98 @@
+---
+import { nav } from '../data/site';
+---
+
+<header
+  id="site-header"
+  data-solid="false"
+  class="group fixed inset-x-0 top-0 z-30 bg-transparent text-cream transition-[background-color,color] duration-300 ease-out data-[solid=true]:bg-paper data-[solid=true]:text-ink data-[menu=true]:bg-paper data-[menu=true]:text-ink"
+>
+  <nav
+    aria-label="Principal"
+    class="flex h-[72px] items-center gap-[clamp(16px,3vw,44px)] px-(--edge)"
+  >
+    <a
+      href="#inicio"
+      aria-label="UMBRAL Arquitectura, inicio"
+      class="mr-auto text-[15px] font-semibold tracking-[0.36em]"
+      style="font-stretch:120%">UMBRAL</a
+    >
+
+    <div class="hidden items-center gap-[clamp(20px,2.6vw,40px)] md:flex">
+      {
+        nav.map((n) => (
+          <a
+            href={`#${n.id}`}
+            data-nav={n.id}
+            data-also={n.also.join(',')}
+            class="nav-link text-sm opacity-[0.78]"
+          >
+            {n.label}
+          </a>
+        ))
+      }
+    </div>
+    <a href="#contacto" class="btn hidden md:inline-flex !min-h-[42px] !px-[18px]">
+      Conversar sobre un proyecto
+    </a>
+
+    <button
+      id="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="menu-movil"
+      class="min-h-11 min-w-16 cursor-pointer border-0 bg-transparent p-0 text-left text-[15px] font-medium text-current md:hidden"
+    >
+      Menú
+    </button>
+  </nav>
+
+  <div
+    id="menu-movil"
+    class="menu-panel fixed inset-x-0 top-[72px] bottom-0 flex flex-col gap-1 bg-paper px-(--edge) pt-6 pb-8 text-ink md:hidden"
+    data-open="false"
+  >
+    {
+      nav.map((n, i) => (
+        <a
+          href={`#${n.id}`}
+          data-close
+          style={`--i:${i}; font-stretch:115%`}
+          class="menu-link py-2 text-[40px] leading-[1.15] font-light tracking-[-0.02em]"
+        >
+          {n.label}
+        </a>
+      ))
+    }
+    <a
+      href="#contacto"
+      data-close
+      class="btn mt-auto !min-h-[54px] w-full justify-between"
+    >
+      Conversar sobre un proyecto <span class="arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header')!;
+  const btn = document.getElementById('menu-toggle')!;
+  const panel = document.getElementById('menu-movil')!;
+
+  const set = (open: boolean) => {
+    panel.dataset.open = String(open);
+    header.dataset.menu = String(open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.textContent = open ? 'Cerrar' : 'Menú';
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+  };
+
+  btn.addEventListener('click', () => set(panel.dataset.open !== 'true'));
+  panel.querySelectorAll('[data-close]').forEach((a) => a.addEventListener('click', () => set(false)));
+  addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && panel.dataset.open === 'true') set(false);
+  });
+  matchMedia('(min-width: 860px)').addEventListener('change', (m) => {
+    if (m.matches) set(false);
+  });
+</script>

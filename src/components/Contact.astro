@@ -1,0 +1,106 @@
+---
+---
+
+<section
+  id="contacto"
+  aria-labelledby="contacto-title"
+  class="grid-12 scroll-mt-[72px] items-end gap-y-16 bg-ink px-(--edge) pt-[clamp(96px,12vw,200px)] pb-[clamp(72px,8vw,120px)] text-cream"
+>
+  <div class="col-span-full flex flex-col gap-7 md:col-[1/span_7]">
+    <h2
+      id="contacto-title"
+      data-reveal
+      class="tight-left m-0 text-[clamp(44px,6.6vw,116px)] leading-[0.92] font-light tracking-[-0.045em]"
+      style="font-stretch:112%"
+    >
+      Cada proyecto comienza con una conversación.
+    </h2>
+    <p data-reveal style="--reveal-delay:80ms" class="m-0 max-w-[42ch] text-[17px] leading-relaxed text-cream/85">
+      Si estás considerando construir o transformar una residencia, nos gustaría conocer el lugar y lo que
+      imaginás para él.
+    </p>
+    <a
+      data-reveal
+      style="--reveal-delay:140ms"
+      href="mailto:estudio@umbral.com.ar"
+      class="link-u self-start text-[clamp(18px,1.6vw,24px)] text-bone-lt hover:text-cream"
+    >
+      estudio@umbral.com.ar
+    </a>
+  </div>
+
+  <div class="col-span-full md:col-[8/span_5] xl:col-[9/span_4]" data-reveal style="--reveal-delay:120ms">
+    <form id="contact-form" aria-label="Consulta sobre un proyecto" class="flex flex-col gap-[18px]">
+      <div class="field">
+        <label for="g-nombre">Nombre y apellido</label>
+        <input id="g-nombre" name="nombre" class="input" required autocomplete="name" />
+      </div>
+      <div class="field">
+        <label for="g-email">Email</label>
+        <input id="g-email" name="email" type="email" class="input" required autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="g-lugar">Dónde está el terreno o la casa</label>
+        <input id="g-lugar" name="lugar" class="input" placeholder="Por ejemplo: Nordelta, Tigre" />
+      </div>
+      <div class="field">
+        <label for="g-msg">Contanos sobre el proyecto</label>
+        <textarea
+          id="g-msg"
+          name="mensaje"
+          class="input"
+          rows="3"
+          placeholder="Obra nueva, ampliación o reforma; para quiénes."></textarea>
+      </div>
+      <button type="submit" class="btn mt-1.5 !min-h-[54px] w-full justify-between">
+        Conversar sobre un proyecto <span class="arrow" aria-hidden="true">→</span>
+      </button>
+      <p class="m-0 text-[13px] leading-[1.55] text-cream/70">
+        Responde personalmente un arquitecto del estudio, en dos o tres días hábiles.
+      </p>
+    </form>
+
+    <div id="contact-sent" role="status" hidden class="swap-in flex flex-col items-start gap-4">
+      <p class="m-0 text-[clamp(24px,2.2vw,32px)] leading-tight font-light">
+        Gracias<span id="sent-name"></span>. Recibimos tu consulta.
+      </p>
+      <p class="m-0 max-w-[42ch] text-base leading-relaxed text-cream/85">
+        Te escribiremos para coordinar una primera conversación, en el estudio o en el lugar.
+      </p>
+      <button
+        id="contact-reset"
+        type="button"
+        class="link-u min-h-11 cursor-pointer border-0 bg-transparent p-0 text-[15px] font-medium text-bone-lt hover:text-cream"
+      >
+        Enviar otra consulta
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const sent = document.getElementById('contact-sent')!;
+  const nameEl = document.getElementById('sent-name')!;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const first = String(new FormData(form).get('nombre') ?? '').trim().split(' ')[0];
+    nameEl.textContent = first ? `, ${first}` : '';
+    form.hidden = true;
+    sent.hidden = false;
+    // Re-trigger the entrance animation on each swap
+    sent.classList.remove('swap-in');
+    void sent.offsetWidth;
+    sent.classList.add('swap-in');
+  });
+
+  document.getElementById('contact-reset')!.addEventListener('click', () => {
+    form.reset();
+    sent.hidden = true;
+    form.hidden = false;
+    form.classList.remove('swap-in');
+    void form.offsetWidth;
+    form.classList.add('swap-in');
+  });
+</script>

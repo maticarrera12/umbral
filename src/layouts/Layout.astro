@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,200..700&display=swap"
+    />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      // Scroll reveal: elements already in view on load are shown immediately,
+      // the rest fade up once. Nothing is hidden without JS (.js gate in CSS).
+      const items = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!('IntersectionObserver' in window)) {
+        items.forEach((el) => el.classList.add('is-in'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (!e.isIntersecting) continue;
+              e.target.classList.add('is-in');
+              io.unobserve(e.target);
+            }
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.06 },
+        );
+        items.forEach((el) => io.observe(el));
+      }
+
+      // Header: solid once past the hero + active section highlight
+      const hero = document.getElementById('inicio');
+      const header = document.getElementById('site-header');
+      const setSolid = () => {
+        if (!hero || !header) return;
+        const solid = scrollY > hero.offsetHeight - 80;
+        header.dataset.solid = String(solid);
+      };
+      addEventListener('scroll', setSolid, { passive: true });
+      setSolid();
+
+      const links = document.querySelectorAll<HTMLAnchorElement>('[data-nav]');
+      const ids = ['inicio', 'proyectos', 'indice', 'enfoque', 'proceso', 'estudio', 'equipo', 'prensa', 'contacto'];
+      const spy = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (!e.isIntersecting) continue;
+            const id = e.target.id;
+            links.forEach((a) => {
+              const also = (a.dataset.also ?? '').split(',');
+              const on = a.dataset.nav === id || also.includes(id);
+              a.style.opacity = on ? '1' : '0.78';
+              if (on) a.setAttribute('aria-current', 'location');
+              else a.removeAttribute('aria-current');
+            });
+          }
+        },
+        { rootMargin: '-45% 0px -50% 0px' },
+      );
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) spy.observe(el);
+      });
+      void reduce;
+    </script>
+  </body>
+</html>

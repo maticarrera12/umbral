@@ -1,0 +1,113 @@
+---
+import { works, filters, photo } from '../data/site';
+---
+
+<section
+  id="indice"
+  aria-labelledby="indice-title"
+  class="grid-12 scroll-mt-[72px] items-start gap-y-10 px-(--edge) pb-[clamp(96px,12vw,200px)]"
+>
+  <div class="col-span-full flex flex-col gap-9 md:col-[1/span_8]">
+    <div class="flex flex-col items-start gap-6">
+      <h2
+        id="indice-title"
+        data-reveal
+        class="m-0 text-[clamp(30px,3.4vw,54px)] leading-[1.05] font-light tracking-[-0.03em]"
+        style="font-stretch:108%"
+      >
+        Índice de obras
+      </h2>
+      <div role="group" aria-label="Filtrar obras" class="flex flex-wrap gap-1.5" id="works-filters">
+        {
+          filters.map((f, i) => (
+            <button
+              type="button"
+              data-filter={f}
+              aria-pressed={i === 0 ? 'true' : 'false'}
+              class="chip min-h-10 cursor-pointer border-0 bg-sand px-3.5 text-[13px] font-medium whitespace-nowrap text-ink aria-pressed:bg-ink aria-pressed:text-paper"
+            >
+              {f}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <ul id="works-list" class="m-0 flex list-none flex-col p-0">
+      {
+        works.map((o, i) => (
+          <li
+            class="work-row grid cursor-default grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-6 gap-y-1 py-3.5 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_48px] xl:grid-cols-[minmax(0,1.4fr)_minmax(0,1.2fr)_minmax(0,0.7fr)_56px]"
+            data-type={o.type}
+            data-img={photo(o.img, 1000)}
+            tabindex="0"
+          >
+            <span class="work-inner text-[clamp(20px,1.9vw,28px)] leading-[1.2] tracking-[-0.015em]">
+              {o.name}
+            </span>
+            <span class="work-sub row-start-2 text-sm text-muted transition-colors duration-200 md:row-auto">
+              {o.place}
+            </span>
+            <span class="work-sub hidden text-sm text-muted transition-colors duration-200 xl:inline">
+              {o.type}
+            </span>
+            <span class="work-sub text-sm text-muted tabular-nums transition-colors duration-200">
+              {o.year}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <figure
+    aria-hidden="true"
+    class="m-0 hidden aspect-[4/5] overflow-hidden bg-stone md:sticky md:top-28 md:col-[9/span_4] md:block xl:col-[10/span_3]"
+  >
+    {
+      works.map((o, i) => (
+        <img
+          class="preview-img"
+          data-on={i === 0 ? 'true' : 'false'}
+          data-name={o.name}
+          src={photo(o.img, 1000)}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      ))
+    }
+  </figure>
+</section>
+
+<script>
+  const rows = [...document.querySelectorAll<HTMLElement>('.work-row')];
+  const imgs = [...document.querySelectorAll<HTMLElement>('.preview-img')];
+  const list = document.getElementById('works-list')!;
+  const chips = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+
+  const show = (name: string | null) => {
+    const first = rows.find((r) => !r.hidden)?.querySelector('.work-inner')?.textContent?.trim();
+    const target = name ?? first;
+    rows.forEach((r) => {
+      r.dataset.active = String(!!name && r.querySelector('.work-inner')?.textContent?.trim() === name);
+    });
+    imgs.forEach((im) => (im.dataset.on = String(im.dataset.name === target)));
+  };
+
+  const nameOf = (r: HTMLElement) => r.querySelector('.work-inner')!.textContent!.trim();
+  rows.forEach((r) => {
+    r.addEventListener('mouseenter', () => show(nameOf(r)));
+    r.addEventListener('focus', () => show(nameOf(r)));
+  });
+  list.addEventListener('mouseleave', () => show(null));
+
+  chips.forEach((c) =>
+    c.addEventListener('click', () => {
+      const f = c.dataset.filter!;
+      chips.forEach((x) => x.setAttribute('aria-pressed', String(x === c)));
+      rows.forEach((r) => (r.hidden = f !== 'Todas' && r.dataset.type !== f));
+      show(null);
+    }),
+  );
+</script>
